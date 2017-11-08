@@ -21,8 +21,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(process.env.DB_HOST);
-
     const {stories} = this.state;
 
     const StoryList = stories.map((story, index) => {
