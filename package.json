@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"webpack-dev-server --env.NODE_ENV=dev --hot --inline\" \"cd server && npm run start\"",
-    "build": "webpack --env.NODE_ENV=prod"
+    "build": "webpack --env.NODE_ENV=prod",
+    "build-start": "concurrently \"webpack --env.NODE_ENV=prod\" \"cd server && npm run start\""
   },
   "author": "Vitali Bahur",
   "devDependencies": {
