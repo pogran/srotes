@@ -1,5 +1,6 @@
 var path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = env => {
     console.log('env', env);
@@ -43,7 +44,10 @@ module.exports = env => {
             ]
         },
         plugins: [
-            new ExtractTextPlugin('styles.css')
+            new ExtractTextPlugin('styles.css'),
+            new Dotenv({
+                path: `${env.NODE_ENV}.env`
+            })
         ]
     }
 }
