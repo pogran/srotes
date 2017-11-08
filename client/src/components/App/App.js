@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+//import logo from './header_logo.png';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Story from "../Story/Story";
