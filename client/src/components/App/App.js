@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Story from "../Story/Story";
+import config from "../../../../config/config";
 
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/stories')
+    fetch(`${config.SERVER_API}/stories`)
       .then(res => res.json())
       .then(stories => this.setState({ stories }));
   }
