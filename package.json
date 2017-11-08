@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.NODE_ENV=dev --hot --inline",
+    "start": "concurrently \"webpack-dev-server --env.NODE_ENV=dev --hot --inline\" \"cd server && npm run start\"",
     "build": "webpack --env.NODE_ENV=prod"
   },
   "author": "Vitali Bahur",
@@ -26,8 +26,9 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta.2",
     "classnames": "^2.2.5",
+    "concurrently": "^3.5.0",
+    "express": "^4.16.2",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "express": "^4.16.2"
+    "react-dom": "^16.0.0"
   }
 }
