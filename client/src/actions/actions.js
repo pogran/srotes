@@ -1,25 +1,33 @@
 import * as types from './actionTypes';
-//
-// export function fetchStuff() {
-//     return dispatch => {
-//         return fetch('test')
-//             .then(response => response.json())
-//             .then(json => dispatch(receiveStuff(json)))
-//     };
-// }
+import config from "../../../config/config";
 
-export function loadStores() {
+export const loadStores = () => {
     return dispatch => {
         dispatch(fetchStores());
+        return fetch(`${config.SERVER_API}/stories`)
+            .then(res => res.json())
+            .then(data => {
+                dispatch(fetchStoresSuccess(data));
+            })
+            .catch(error => {
+                dispatch(fetchStoresError(error.toString()));
+            })
     };
-
-    // return {
-    //     type: types.FETCH_STORES
-    // }
 }
-
-export function fetchStores() {
+export const fetchStores = () => {
     return {
         type: types.FETCH_STORES
+    }
+}
+export const fetchStoresSuccess = data => {
+    return {
+        type: types.FETCH_STORES_SUCCESS,
+        data
+    }
+}
+export const fetchStoresError = error => {
+    return {
+        type: types.FETCH_STORES_ERROR,
+        error
     }
 }

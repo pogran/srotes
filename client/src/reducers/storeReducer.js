@@ -1,5 +1,5 @@
 import {initStores} from './initialState';
-import {FETCH_STORES} from "../actions/actionTypes";
+import {FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS} from "../actions/actionTypes";
 
 export default function stuff(state = initStores, action) {
     switch (action.type) {
@@ -7,6 +7,18 @@ export default function stuff(state = initStores, action) {
             return {...state,
                 loading: true
             };
+
+        case FETCH_STORES_SUCCESS:
+            return {...state,
+                loading: false,
+                stores: action.data
+            }
+
+        case FETCH_STORES_ERROR:
+            return {...state,
+                loading: false,
+                error: action.error
+            }
 
         default:
             return state;

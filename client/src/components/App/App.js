@@ -18,9 +18,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadStores();
-    fetch(`${config.SERVER_API}/stories`)
-      .then(res => res.json())
-      .then(stories => this.setState({ stories }));
   }
 
   render() {
