@@ -5,6 +5,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Story from "../Story/Story";
 import config from "../../../../config/config";
+import PropTypes from 'prop-types';
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.loadStores();
     fetch(`${config.SERVER_API}/stories`)
       .then(res => res.json())
       .then(stories => this.setState({ stories }));
@@ -49,5 +51,9 @@ class App extends Component {
     );
   }
 }
+
+App.PropTypes = {
+    loadStores: PropTypes.func.isRequired
+};
 
 export default App;

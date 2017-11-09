@@ -1,3 +1,4 @@
 export const initStores = {
-    stores: []
+    stores: [],
+    loading: false,
 };
