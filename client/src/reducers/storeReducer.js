@@ -17,7 +17,6 @@ export default function stuff(state = initStores, action) {
         case FETCH_STORES_ERROR:
             return {...state,
                 loading: false,
-                error: action.error
             }
 
         default:

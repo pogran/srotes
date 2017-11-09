@@ -3,29 +3,40 @@ import logo from './logo.svg';
 //import logo from './header_logo.png';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Story from "../Story/Story";
-import config from "../../../../config/config";
+import StoryList from "../Story/StoryList";
 import PropTypes from 'prop-types';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      stories: []
+      error: ''
     }
   }
 
   componentDidMount() {
-    this.props.loadStores();
+    const that = this;
+    this.props.loadStores()
+        .then(() => {})
+        .catch(error => {
+          that.setState({...that.state, error})
+        });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
   }
 
   render() {
-    const {stories} = this.state;
+    console.log('render App', this.props.stories);
+    const {loading} = this.props;
 
-    const StoryList = stories.map((story, index) => {
-      return <Story products={story.products} key={index}  />
-    });
+    const loader = <div className='m-4'>
+      <i className="fa fa-spinner fa-spin fa-3x fa-fw"/>
+      <span className="sr-only">Loading...</span>
+    </div>;
 
     return (
       <div className="App">
@@ -39,7 +50,11 @@ class App extends Component {
                 <div className="card-header">
                   Stories
                 </div>
-                {(stories.length && StoryList) || ''}
+                {(loading && loader) || ''}
+                {this.state.error && <div className="m-4 alert alert-danger" role="alert">
+                  <strong>Error!</strong> {this.state.error}
+                </div>}
+                {(!loading && !this.state.error && <StoryList/>) || ''}
               </div>
             </div>
           </div>
@@ -50,7 +65,8 @@ class App extends Component {
 }
 
 App.PropTypes = {
-    loadStores: PropTypes.func.isRequired
+    loadStores: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
 };
 
 export default App;

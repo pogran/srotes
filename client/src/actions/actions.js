@@ -4,14 +4,18 @@ import config from "../../../config/config";
 export const loadStores = () => {
     return dispatch => {
         dispatch(fetchStores());
-        return fetch(`${config.SERVER_API}/stories`)
-            .then(res => res.json())
-            .then(data => {
-                dispatch(fetchStoresSuccess(data));
-            })
-            .catch(error => {
-                dispatch(fetchStoresError(error.toString()));
-            })
+        return new Promise((resolve, reject) => {
+            return fetch(`${config.SERVER_API}/stories`)
+                .then(res => res.json())
+                .then(data => {
+                    dispatch(fetchStoresSuccess(data));
+                    resolve();
+                })
+                .catch(error => {
+                    dispatch(fetchStoresError());
+                    reject(error.toString());
+                })
+        });
     };
 }
 export const fetchStores = () => {
@@ -25,9 +29,8 @@ export const fetchStoresSuccess = data => {
         data
     }
 }
-export const fetchStoresError = error => {
+export const fetchStoresError = () => {
     return {
         type: types.FETCH_STORES_ERROR,
-        error
     }
 }
