@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Product from "./Product/Product";
-import AddProduct from "./Product/AddProduct";
+import Product from "../Product/Product";
+import AddProduct from "../Product/AddProduct";
 
 class Story extends Component {
   constructor(props) {
