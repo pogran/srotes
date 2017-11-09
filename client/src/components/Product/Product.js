@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class Product extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class Product extends Component {
 
     return (
       <div className="form-inline mb-2 row">
-        <label htmlFor="test" className="col-md-6 col-form-label">{name}</label>
+        <label className={classnames('col-md-6 col-form-label', {'error' : count <= 0})}>{name}</label>
         <div className="row col-md-6 form-group">
           <button onClick={this.handleClickMinus} type="button" className="btn btn-outline-danger">
             <i className="fa fa-minus" aria-hidden="true"/>
