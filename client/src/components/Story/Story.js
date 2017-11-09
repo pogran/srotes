@@ -16,7 +16,7 @@ class Story extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextState.products.length !== this.state.products.length;
+    return nextState.products !== this.state.products;
   }
 
   addProduct = (data) => {
