@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.less';
 import {Provider} from 'react-redux';
 import AppContainer from './components/App/AppContainer';
 import configureStore from './store/configureStore';
