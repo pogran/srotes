@@ -60,7 +60,6 @@ class Product extends Component {
 
 Product.propTypes = {
   updateProduct: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
 };
 
 export default Product;

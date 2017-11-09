@@ -34,3 +34,19 @@ export const fetchStoresError = () => {
         type: types.FETCH_STORES_ERROR,
     }
 }
+
+export const updateProductData = (storeId, product) => {
+    return {
+        type: types.UPDATE_PRODUCT_DATA,
+        storeId,
+        product
+    }
+}
+
+export const addProduct = (storeId, product) => {
+    return {
+        type: types.ADD_PRODUCT,
+        storeId,
+        product
+    }
+}

@@ -8,14 +8,14 @@ class StoryList extends Component {
     super(props);
   }
 
-  shouldComponentUpdate(nextState, nextProps) {
-    return nextProps.stores.length !== this.props.stores
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.stores.length !== this.props.stores.length;
   }
 
   render() {
     console.log('render stores list');
-    return this.props.stores.map((story, index) => {
-        return <Story products={story.products} key={index}  />
+    return this.props.stores.map((story) => {
+        return <Story id={story.id} key={story.id}  />
     });
   }
 }

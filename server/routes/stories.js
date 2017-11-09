@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.json([
     {
+      id: 1,
       products: [
         {
           id: 1,
@@ -19,6 +20,7 @@ router.get('/', function(req, res, next) {
       ]
     },
     {
+      id: 2,
       products: [
         {
           id: 1,

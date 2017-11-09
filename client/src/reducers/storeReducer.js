@@ -1,7 +1,12 @@
 import {initStores} from './initialState';
-import {FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS} from "../actions/actionTypes";
+import {
+    ADD_PRODUCT, FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS,
+    UPDATE_PRODUCT_DATA
+} from "../actions/actionTypes";
 
 export default function stuff(state = initStores, action) {
+    let indexStore = action.hasOwnProperty('storeId') ? state.stores.findIndex(x=> x.id === action.storeId) : -1;
+
     switch (action.type) {
         case FETCH_STORES:
             return {...state,
@@ -17,6 +22,42 @@ export default function stuff(state = initStores, action) {
         case FETCH_STORES_ERROR:
             return {...state,
                 loading: false,
+            }
+
+        case UPDATE_PRODUCT_DATA:
+            let indexProduct = state.stores[indexStore].products.findIndex(x => x.id === action.product.id);
+
+            return {...state,
+                stores: [
+                    ...state.stores.slice(0, indexStore),
+                    {
+                        ...state.stores[indexStore],
+                        products: [
+                            ...state.stores[indexStore].products.slice(0, indexProduct),
+                            action.product,
+                            ...state.stores[indexStore].products.slice(indexProduct + 1)
+                        ],
+                    },
+                    ...state.stores.slice(indexStore + 1)
+                ]
+            }
+
+        case ADD_PRODUCT:
+            return {...state,
+                stores: [
+                    ...state.stores.slice(0, indexStore),
+                    {
+                        ...state.stores[indexStore],
+                        products: [
+                            ...state.stores[indexStore].products,
+                            {
+                                ...action.product,
+                                id: state.stores[indexStore].products.length + 1
+                            }
+                        ],
+                    },
+                    ...state.stores.slice(indexStore + 1)
+                ]
             }
 
         default:
