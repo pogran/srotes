@@ -22,7 +22,8 @@ class Story extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.products.length !== this.props.products.length || nextProps.filterName !== this.props.filterName;
+    return true;
+    //return nextProps.products.length !== this.props.products.length || nextProps.filterName !== this.props.filterName;
   }
 
   addProduct = (data) => {
