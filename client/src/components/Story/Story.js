@@ -11,10 +11,6 @@ class Story extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      products: props.products
-    };
-
     this.addProduct = this.addProduct.bind(this);
   }
 
@@ -24,30 +20,16 @@ class Story extends Component {
   }
 
   addProduct = (data) => {
-    data.id = this.state.products.length + 1;
-
     this.props.addProduct(this.props.id, data);
   };
 
   updateProduct = product => {
     const {updateProductData, id} = this.props;
     updateProductData(id, product);
-
-    // let index = this.state.products.findIndex(x=> x.id === data.id);
-    // if (index === -1) {
-    //   // handle error
-    // } else {
-    //   this.setState({...this.state,
-    //     products: [
-    //       ...this.state.products.slice(0, index),
-    //       {...this.state.products[index], count: data.count},
-    //       ...this.state.products.slice(index + 1)
-    //     ]});
-    // }
   }
 
   render() {
-    console.log('re-render story', this.state);
+    console.log('re-render story', this.props.products);
 
     const {products} = this.props;
 
