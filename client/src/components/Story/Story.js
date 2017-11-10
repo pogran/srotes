@@ -9,7 +9,7 @@ import {addProduct, updateProductData} from "../../actions/actions";
 
 class Story extends Component {
   static propTypes = {
-      products: PropTypes.array.isRequired,
+      products: PropTypes.object.isRequired,
       id: PropTypes.number.isRequired,
       updateProductData: PropTypes.func.isRequired,
       filterName: PropTypes.string.isRequired
@@ -40,7 +40,7 @@ class Story extends Component {
 
     const {products, filterName} = this.props;
 
-    const listProducts = products
+    const listProducts = _.values(products)
         .filter(product => product.name.indexOf(filterName) !== -1)
         .map(data => {
           return <Product updateProduct={data => this.updateProduct(data)}
@@ -58,8 +58,8 @@ class Story extends Component {
         <AddProduct addProduct={data => this.addProduct(data)} />
         <div className="card">
           <div className="card-block p-4">
-            {!products.length && <p>Products not found</p>}
-            {(products.length && listProducts) || ''}
+            {!listProducts.length && <p>Products not found</p>}
+            {(listProducts.length && listProducts) || ''}
           </div>
         </div>
       </div>

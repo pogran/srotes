@@ -1,4 +1,5 @@
 import {initStores} from './initialState';
+import _ from 'lodash';
 import {
     ADD_PRODUCT, FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS, FILTER_PRODUCT,
     UPDATE_PRODUCT_DATA
@@ -16,7 +17,16 @@ export default function stuff(state = initStores, action) {
         case FETCH_STORES_SUCCESS:
             return {...state,
                 loading: false,
-                stores: action.data
+                stores: _.chain(action.data)
+                    .keyBy('id')
+                    .map(object => {
+                        object.products = _.chain(object.products)
+                            .keyBy('id')
+                            .value();
+
+                        return object
+                    })
+                    .value()
             }
 
         case FETCH_STORES_ERROR:
