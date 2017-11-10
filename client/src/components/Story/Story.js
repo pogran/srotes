@@ -8,6 +8,13 @@ import _ from 'lodash';
 import {addProduct, updateProductData} from "../../actions/actions";
 
 class Story extends Component {
+  static propTypes = {
+      products: PropTypes.array.isRequired,
+      id: PropTypes.number.isRequired,
+      updateProductData: PropTypes.func.isRequired,
+      filterName: PropTypes.string.isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -15,8 +22,7 @@ class Story extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return true;
-    //return nextProps.products.length !== this.props.products.length;
+    return nextProps.products.length !== this.props.products.length || nextProps.filterName !== this.props.filterName;
   }
 
   addProduct = (data) => {
@@ -31,14 +37,20 @@ class Story extends Component {
   render() {
     console.log('re-render story', this.props.products);
 
-    const {products} = this.props;
+    const {products, filterName} = this.props;
 
-    const listProducts = products.map(data => {
-      return <Product updateProduct={data => this.updateProduct(data)}
-                      data={data}
-                      key={data.id}
-      />
-    });
+    const listProducts = products
+        .filter(product => product.name.indexOf(filterName) !== -1)
+        .map(data => {
+          return <Product updateProduct={data => this.updateProduct(data)}
+                          data={data}
+                          key={data.id}
+          />
+      });
+
+    if(!listProducts.length && filterName) {
+      return null;
+    }
 
     return (
       <div className="card-block store p-3">
@@ -67,11 +79,5 @@ const mapDispatchToProps = dispatch => {
       addProduct: (storeId, data) => dispatch(addProduct(storeId, data))
   }
 }
-
-Story.PropTypes = {
-  products: PropTypes.array.isRequired,
-  id: PropTypes.number.isRequired,
-  updateProductData: PropTypes.func.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Story);

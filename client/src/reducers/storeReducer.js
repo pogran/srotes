@@ -1,6 +1,6 @@
 import {initStores} from './initialState';
 import {
-    ADD_PRODUCT, FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS,
+    ADD_PRODUCT, FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS, FILTER_PRODUCT,
     UPDATE_PRODUCT_DATA
 } from "../actions/actionTypes";
 
@@ -59,6 +59,11 @@ export default function stuff(state = initStores, action) {
                     ...state.stores.slice(indexStore + 1)
                 ]
             }
+
+        case FILTER_PRODUCT:
+            return {...state,
+                filterName: action.name
+            };
 
         default:
             return state;

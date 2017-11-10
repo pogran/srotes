@@ -50,3 +50,10 @@ export const addProduct = (storeId, product) => {
         product
     }
 }
+
+export const filterProduct = name => {
+    return {
+        type: types.FILTER_PRODUCT,
+        name
+    }
+}

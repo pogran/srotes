@@ -5,9 +5,15 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import StoryList from "../Story/StoryList";
 import PropTypes from 'prop-types';
+import Filter from "../Filter/Filter";
 
 
 class App extends Component {
+  static propTypes = {
+      loadStores: PropTypes.func.isRequired,
+      loading: PropTypes.bool.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -56,6 +62,7 @@ class App extends Component {
         <div className="main">
           <div className="row justify-content-md-center">
             <div className="col-md-4 mt-sm-5">
+              <Filter/>
               <div className="card stores">
                 <div className="card-header">
                   Stores
@@ -73,10 +80,5 @@ class App extends Component {
     );
   }
 }
-
-App.PropTypes = {
-    loadStores: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
-};
 
 export default App;
