@@ -34,6 +34,7 @@
     "webpack-dev-server": "2.9.4"
   },
   "dependencies": {
+    "@types/react": "16.0.22",
     "bootstrap": "4.0.0-beta.2",
     "classnames": "2.2.5",
     "concurrently": "3.5.0",
