@@ -16,6 +16,16 @@ class App extends Component {
     }
   }
 
+  static childContextTypes = {
+    user: PropTypes.string.isRequired
+  }
+
+  getChildContext() {
+    return {
+      user: 'Test'
+    }
+  }
+
   componentDidMount() {
     const that = this;
     this.props.loadStores()

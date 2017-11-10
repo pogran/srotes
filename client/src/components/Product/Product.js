@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
+  static contextTypes = {
+      user: PropTypes.string.isRequired
+  }
+
+  constructor(props,context) {
+    super(props,context);
 
     this.handleClickMinus = this.handleClickMinus.bind(this);
     this.handleClickPlus = this.handleClickPlus.bind(this);
