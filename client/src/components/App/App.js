@@ -48,7 +48,7 @@ class App extends Component {
             <div className="col-md-4 mt-sm-5">
               <div className="card stores">
                 <div className="card-header">
-                  Stories
+                  Stores
                 </div>
                 {(loading && loader) || ''}
                 {this.state.error && <div className="m-4 alert alert-danger" role="alert">
