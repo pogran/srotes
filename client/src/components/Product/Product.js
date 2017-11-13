@@ -48,7 +48,7 @@ class Product extends Component {
           <button onClick={this.handleClickMinus} type="button" className="btn btn-outline-danger">
             <i className="fa fa-minus" aria-hidden="true"/>
           </button>
-          <span className="mr-2 ml-2 col-md-4">{count}</span>
+          <span className="count-plus mr-2 ml-2 col-md-4 count-product">{count}</span>
           <button onClick={this.handleClickPlus} type="button" className="btn btn-outline-success">
             <i className="fa fa-plus" aria-hidden="true"/>
           </button>
