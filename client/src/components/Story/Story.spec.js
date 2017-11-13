@@ -12,6 +12,12 @@ const storeStateMock = {
     store:{
         stores: [
             {
+                id: 1,
+                products: [
+
+                ]
+            },
+            {
                 id: 2,
                 products: [
                     {
@@ -53,5 +59,18 @@ describe("test <Story/> component", function () {
 
     it('count div', () => {
         expect(container.find('div').length).to.equal(9);
-    }) 
+    })
+
+    it('count +', () => {
+        const product = container.find('Product').first();
+        //product.simulate('updateProduct')
+        product.props().updateProduct({name: 1, count: 2, id: 3});
+        expect(updateProductData.calledOnce).to.equal(false);
+        //expect(container.props().updateProductData.mock.calls.length).toBe(1);
+    })
+
+    it('AddProduct', () => {
+        const addProduct = container.find('AddProduct');
+        console.log('add', addProduct.debug());
+    });
 });
