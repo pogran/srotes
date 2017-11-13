@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {filterProduct, searchProduct} from "../../actions/actions";
+import debounce from 'debounce';
 
 class Filter extends Component {
     static propTypes = {
@@ -10,14 +11,20 @@ class Filter extends Component {
 
     constructor(props) {
         super(props);
-
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    componentWillMount() {
+        this.search = debounce(event => {
+            const {searchProduct} = this.props;
+            const target = event.target;
+            searchProduct(target.value);
+        }, 500);
+    }
+
     handleInputChange = event => {
-        const {searchProduct} = this.props;
-        const target = event.target;
-        searchProduct(target.value);
+        event.persist();
+        this.search(event);
     }
 
     render() {
