@@ -1,12 +1,8 @@
 import React from 'react';
 import {expect} from 'chai';
-import Enzyme,{shallow, mount} from 'enzyme';
-import raf from '../../../../test/tempPolyfills';
+import {shallow, mount} from 'enzyme';
 import sinon from 'sinon';
-import Adapter from 'enzyme-adapter-react-16';
 import Product from './Product';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const updateProduct = sinon.spy();
 const props = {
