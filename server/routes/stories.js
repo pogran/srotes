@@ -3,8 +3,7 @@ let router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    console.log('ar', requireUncached('../data/stores'));
-    let stores = require('../data/stores');
+    let stores = requireUncached('../data/stores');
     let search = req.query.q;
 
     if(search) {
