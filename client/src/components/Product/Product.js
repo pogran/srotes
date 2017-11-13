@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 class Product extends Component {
-  static contextTypes = {
-      user: PropTypes.string.isRequired
-  }
-
   constructor(props,context) {
     super(props,context);
 
