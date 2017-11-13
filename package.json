@@ -38,6 +38,7 @@
     "bootstrap": "4.0.0-beta.2",
     "classnames": "2.2.5",
     "concurrently": "3.5.0",
+    "debounce": "^1.1.0",
     "dotenv-webpack": "1.5.4",
     "express": "4.16.2",
     "lodash": "4.17.4",
