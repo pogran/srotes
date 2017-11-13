@@ -41,7 +41,6 @@ class Story extends Component {
     const {products, filterName} = this.props;
 
     const listProducts = products
-        .filter(product => product.name.indexOf(filterName) !== -1)
         .map(data => {
           return <Product updateProduct={data => this.updateProduct(data)}
                           data={data}

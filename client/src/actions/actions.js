@@ -57,3 +57,21 @@ export const filterProduct = name => {
         name
     }
 }
+
+export const searchProduct = name => {
+    return dispatch => {
+        dispatch(filterProduct(name));
+        return new Promise((resolve, reject) => {
+            return fetch(`${config.SERVER_API}/stories/?q=${name}`)
+                .then(res => res.json())
+                .then(data => {
+                    dispatch(fetchStoresSuccess(data));
+                    resolve();
+                })
+                .catch(error => {
+                    dispatch(fetchStoresError());
+                    reject(error.toString());
+                })
+        });
+    };
+}

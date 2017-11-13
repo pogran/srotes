@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {filterProduct} from "../../actions/actions";
+import {filterProduct, searchProduct} from "../../actions/actions";
 
 class Filter extends Component {
     static propTypes = {
@@ -15,8 +15,9 @@ class Filter extends Component {
     }
 
     handleInputChange = event => {
+        const {searchProduct} = this.props;
         const target = event.target;
-        this.props.filterProduct(target.value);
+        searchProduct(target.value);
     }
 
     render() {
@@ -28,7 +29,8 @@ class Filter extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        filterProduct: (name) => dispatch(filterProduct(name))
+        filterProduct: (name) => dispatch(filterProduct(name)),
+        searchProduct: (name) => dispatch(searchProduct(name))
     }
 }
 
