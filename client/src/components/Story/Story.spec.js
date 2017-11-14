@@ -19,6 +19,8 @@ import reducer from "../../reducers/storeReducer";
 const mockStore = configureMockStore([ thunk ]);
 const storeStateMock = {
     store:{
+        loading: false,
+        filterName: '',
         stores: [
             {
                 id: 1,
@@ -50,7 +52,7 @@ const storeStateMock = {
     }
 };
 
-describe("<Story/> component", function () {
+describe.only("<Story/> component", function () {
     let container,
         store;
 
@@ -73,10 +75,28 @@ describe("<Story/> component", function () {
 
     });
 
-    it('click count + for product', () => {
+    it('click count plus for product', () => {
         const product = container.find(Product).first();
         product.find('.btn-outline-success').simulate('click');
-        expect(updateProductData.calledOnce).to.be.false;
+        expect(container.props().store.getActions()[0].product)
+            .to.deep.equal({
+                id: 1, name: 'orange', count: 2
+            });
+        //console.log('prod update', container.props().store.replaceReducer());
+        // store.dispatch(actions.fetchStores());
+        // console.log('store', store.getActions());
+        // console.log('store', store.getState());
+        //product.find('.btn-outline-danger').simulate('click');
+        //console.log('prod update', container.props().store.getActions());
+    });
+
+    it('click count minus for product', () => {
+        const product = container.find(Product).first();
+        product.find('.btn-outline-danger').simulate('click');
+        expect(container.props().store.getActions()[0].product)
+            .to.deep.equal({
+            id: 1, name: 'orange', count: 0
+        });
     })
 });
 
@@ -142,7 +162,7 @@ describe('async actions', () => {
     })
 });
 
-describe.only('test reducer story', () => {
+describe('test reducer story', () => {
 
     let state = {
         stores: [],
