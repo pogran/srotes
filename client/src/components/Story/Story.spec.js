@@ -7,6 +7,9 @@ import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import Story from './Story';
 
+import * as actions from "../../actions/actions";
+import * as types from "../../actions/actionTypes";
+
 const mockStore = configureMockStore([ thunk ]);
 const storeStateMock = {
     store:{
@@ -64,13 +67,45 @@ describe("test <Story/> component", function () {
     it('count +', () => {
         const product = container.find('Product').first();
         //product.simulate('updateProduct')
-        product.props().updateProduct({name: 1, count: 2, id: 3});
+        //product.props().updateProduct({name: 1, count: 2, id: 3});
         expect(updateProductData.calledOnce).to.equal(false);
         //expect(container.props().updateProductData.mock.calls.length).toBe(1);
+        //product.simulate('updateProduct');
     })
 
-    it('AddProduct', () => {
-        const addProduct = container.find('AddProduct');
-        console.log('add', addProduct.debug());
+    // it('AddProduct', () => {
+    //     const addProduct = container.find('AddProduct');
+    //     console.log('add', addProduct.debug());
+    // });
+});
+
+describe('actions', () => {
+    it('addProduct', () => {
+        const storeId = 2;
+        const product = {
+            name: 'apple',
+            count: 2,
+        };
+        const expectedAction = {
+            type: types.ADD_PRODUCT,
+            storeId,
+            product
+        };
+        expect(actions.addProduct(storeId, product)).to.deep.equal(expectedAction);
     });
+
+    it('updateProductData', () => {
+        const storeId = 2;
+        const product = {
+            id: 1,
+            name: 'orange',
+            count: 5,
+        };
+        const expectedAction = {
+            type: types.UPDATE_PRODUCT_DATA,
+            storeId,
+            product
+        };
+        expect(actions.updateProductData(storeId, product)).to.deep.equal(expectedAction);
+    })
 });
