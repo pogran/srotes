@@ -39,7 +39,7 @@ class Product extends Component {
   render() {
     const {count, name} = this.props.data;
 
-    console.log('re-render product', this.props.data);
+    //console.log('re-render product', this.props.data);
 
     return (
       <div className="form-inline mb-2 row">

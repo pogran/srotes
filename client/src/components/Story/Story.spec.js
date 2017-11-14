@@ -10,6 +10,7 @@ import Story from './Story';
 
 import * as actions from "../../actions/actions";
 import * as types from "../../actions/actionTypes";
+import Product from "../Product/Product";
 
 const mockStore = configureMockStore([ thunk ]);
 const storeStateMock = {
@@ -27,7 +28,7 @@ const storeStateMock = {
                     {
                         id: 1,
                         name: 'orange',
-                        count: 4,
+                        count: 1,
                     },
                     {
                         id: 2,
@@ -45,7 +46,7 @@ const storeStateMock = {
     }
 };
 
-describe("test <Story/> component", function () {
+describe.only("<Story/> component", function () {
     let container,
         store,
         updateProductData = sinon.spy();
@@ -53,7 +54,8 @@ describe("test <Story/> component", function () {
     const props = {
         id: 2,
         filterName: '',
-        updateProductData:updateProductData
+        updateProductData:updateProductData,
+        testMethod: sinon.spy()
     };
 
     beforeEach(() => {
@@ -61,15 +63,25 @@ describe("test <Story/> component", function () {
         container = mount(<Story store={store} {...props}/>);
     });
 
-    it('count div', () => {
-        expect(container.find('div').length).to.equal(9);
-    })
+    it('render name for product',() => {
+        const product = container.find(Product).first();
+        expect(product.find('.col-form-label').text()).to.equal('orange');
+    });
 
-    it('count +', () => {
-        const product = container.find('Product').first();
+    it('click count + for product', () => {
+        const product = container.find(Product).first();
+        //console.log('product-data', product.props());
+        //product.find('.btn-outline-success').simulate('click');
+
+        //console.log('product-data-new', product.props());
+        //expect(updateProductData.calledOnce).to.equal(true);
+        // console.log('product.props().values',product.props().should);
+        // product.props().should.have.property('data', {count: 5});
+        //console.log('product-new', product.props().should.have.property('data', {count: 5}));
+        //expect(updateProductData.called).to.be.true;
         //product.simulate('updateProduct')
         //product.props().updateProduct({name: 1, count: 2, id: 3});
-        expect(updateProductData.calledOnce).to.equal(false);
+       // expect(updateProductData.calledOnce).to.equal(false);
         //expect(container.props().updateProductData.mock.calls.length).toBe(1);
         //product.simulate('updateProduct');
     })
