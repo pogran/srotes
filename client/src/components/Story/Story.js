@@ -12,7 +12,6 @@ class Story extends Component {
         products: PropTypes.array.isRequired,
         id: PropTypes.number.isRequired,
         updateProductData: PropTypes.func.isRequired,
-        testMethod: PropTypes.func.isRequired,
         filterName: PropTypes.string.isRequired
     };
 

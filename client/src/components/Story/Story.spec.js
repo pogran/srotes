@@ -1,3 +1,5 @@
+/* global describe, it, expect, jest */
+
 import React from 'react';
 import {expect} from 'chai';
 import {shallow, mount} from 'enzyme';
@@ -48,14 +50,15 @@ const storeStateMock = {
 
 describe.only("<Story/> component", function () {
     let container,
-        store,
-        updateProductData = sinon.spy();
+        store;
+
+    const updateProductData = sinon.spy();
+
 
     const props = {
         id: 2,
         filterName: '',
-        updateProductData:updateProductData,
-        testMethod: sinon.spy()
+        updateProductData: updateProductData,
     };
 
     beforeEach(() => {
@@ -65,31 +68,14 @@ describe.only("<Story/> component", function () {
 
     it('render name for product',() => {
         const product = container.find(Product).first();
-        expect(product.find('.col-form-label').text()).to.equal('orange');
+
     });
 
     it('click count + for product', () => {
         const product = container.find(Product).first();
-        //console.log('product-data', product.props());
-        //product.find('.btn-outline-success').simulate('click');
-
-        //console.log('product-data-new', product.props());
-        //expect(updateProductData.calledOnce).to.equal(true);
-        // console.log('product.props().values',product.props().should);
-        // product.props().should.have.property('data', {count: 5});
-        //console.log('product-new', product.props().should.have.property('data', {count: 5}));
-        //expect(updateProductData.called).to.be.true;
-        //product.simulate('updateProduct')
-        //product.props().updateProduct({name: 1, count: 2, id: 3});
-       // expect(updateProductData.calledOnce).to.equal(false);
-        //expect(container.props().updateProductData.mock.calls.length).toBe(1);
-        //product.simulate('updateProduct');
+        product.find('.btn-outline-success').simulate('click');
+        expect(updateProductData.calledOnce).to.be.false;
     })
-
-    // it('AddProduct', () => {
-    //     const addProduct = container.find('AddProduct');
-    //     console.log('add', addProduct.debug());
-    // });
 });
 
 describe('actions', () => {
