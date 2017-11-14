@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import config from "../../../config/config";
+import fetch from 'isomorphic-fetch';
 
 export const loadStores = () => {
     return dispatch => {
@@ -61,17 +62,17 @@ export const filterProduct = name => {
 export const searchProduct = name => {
     return dispatch => {
         dispatch(filterProduct(name));
-        return new Promise((resolve, reject) => {
+        //return new Promise((resolve, reject) => {
             return fetch(`${config.SERVER_API}/stories/?q=${name}`)
                 .then(res => res.json())
                 .then(data => {
                     dispatch(fetchStoresSuccess(data));
-                    resolve();
+                    //resolve();
                 })
                 .catch(error => {
                     dispatch(fetchStoresError());
-                    reject(error.toString());
+                  //  reject(error.toString());
                 })
-        });
+       // });
     };
 }
