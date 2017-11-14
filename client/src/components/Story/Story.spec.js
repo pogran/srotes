@@ -13,6 +13,8 @@ import Story from './Story';
 import * as actions from "../../actions/actions";
 import * as types from "../../actions/actionTypes";
 import Product from "../Product/Product";
+import {initStores} from "../../reducers/initialState";
+import reducer from "../../reducers/storeReducer";
 
 const mockStore = configureMockStore([ thunk ]);
 const storeStateMock = {
@@ -48,7 +50,7 @@ const storeStateMock = {
     }
 };
 
-describe.only("<Story/> component", function () {
+describe("<Story/> component", function () {
     let container,
         store;
 
@@ -131,11 +133,66 @@ describe('async actions', () => {
         ]
 
         const middlewares = [thunk];
-        const mockStore = configureMockStore(middlewares)
+        const mockStore = configureMockStore(middlewares);
         const store = mockStore({stores: []});
 
         return store.dispatch(actions.searchProduct(name)).then(() => {
             expect(store.getActions()).to.deep.equal(expectedActions)
         })
     })
+});
+
+describe.only('test reducer story', () => {
+
+    let state = {
+        stores: [],
+        loading: false,
+        filterName: ''
+    };
+
+    it('should return the initial state', () => {
+        expect(reducer(undefined, {})).to.deep.equal(state)
+    })
+
+    it('should handle FETCH_STORES', () => {
+        expect(reducer(state,{
+            type: types.FETCH_STORES,
+        })).to.deep.equal({
+            stores:[],
+            loading: true,
+            filterName: ''
+        })
+    })
+
+    it('should handle ADD_PRODUCT', () => {
+        expect(reducer({
+            stores: [{
+                id: 1,
+                products: []
+            }],
+            loading: false,
+            filterName: ''
+        },{
+            type: types.ADD_PRODUCT,
+            storeId: 1,
+            product: {
+                name: 'apple',
+                count: 1
+            }
+
+        })).to.deep.equal({
+            stores: [{
+                id: 1,
+                products: [
+                    {
+                        name: 'apple',
+                        count: 1,
+                        id: 1
+                    }
+                ]
+            }],
+            loading: false,
+            filterName: ''
+        })
+    });
 });
