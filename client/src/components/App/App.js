@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import StoryList from "../Story/StoryList";
 import PropTypes from 'prop-types';
 import Filter from "../Filter/Filter";
+import Table from "../Table/Table";
+import 'react-table/react-table.css'
 
 
 class App extends Component {
@@ -76,6 +78,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <Table/>
       </div>
     );
   }
