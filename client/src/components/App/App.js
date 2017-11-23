@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Filter from "../Filter/Filter";
 import Table from "../Table/Table";
 import 'react-table/react-table.css'
+import TableProducts from "../TableProducts/TableProducts";
 
 
 class App extends Component {
@@ -78,7 +79,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <Table/>
+        <TableProducts/>
       </div>
     );
   }
