@@ -11,6 +11,9 @@ module.exports = env => {
         entry: [
             './client/src/index.js'
         ],
+        resolve: {
+          extensions: [".ts", ".tsx", ".js", ".json"]
+        },
         output: {
             path: path.join(__dirname, 'build'),
             filename: 'bundle.js',
@@ -18,6 +21,7 @@ module.exports = env => {
         },
         module: {
             loaders: [
+                { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
                 {
                     test: /\.js/,
                     loaders: ['babel-loader'],
