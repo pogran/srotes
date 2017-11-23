@@ -4,7 +4,7 @@ import {
     UPDATE_PRODUCT_DATA
 } from "../actions/actionTypes";
 
-export default function stuff(state = initStores, action) {
+export default function reducer(state = initStores, action) {
     let indexStore = action.hasOwnProperty('storeId') ? state.stores.findIndex(x=> x.id === action.storeId) : -1;
 
     switch (action.type) {

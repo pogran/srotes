@@ -3,3 +3,8 @@ export const initStores = {
     loading: false,
     filterName: ''
 };
+
+export const initComments = {
+    data: [],
+    loading: true,
+};
