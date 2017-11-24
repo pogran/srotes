@@ -1,3 +1,5 @@
+// @ts-check
+
 import * as types from './actionTypes';
 import config from "../../../config/config";
 import fetch from 'isomorphic-fetch';
