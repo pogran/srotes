@@ -1,3 +1,7 @@
+/**
+ * cSpell:ignore devtool
+ */
+
 const path = require('path'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   Dotenv = require('dotenv-webpack'),
@@ -12,7 +16,7 @@ module.exports = env => {
       './client/src/index.js'
     ],
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".json"]
+      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
     },
     output: {
       path: path.join(__dirname, 'build'),

@@ -1,19 +1,17 @@
-// @ts-check
-
 import * as types from './actionTypes';
 import config from "../../../config/config";
-import fetch from 'isomorphic-fetch';
+import { Dispatch } from 'redux';
 
 export const loadStores = () => {
-  return dispatch => {
+  return (dispatch : Dispatch<any>) => {
     dispatch(fetchStores());
-    return new Promise((resolve, reject) => {
+    return new Promise<String>((resolve: any, reject: any) => {
       return fetch(`${config.SERVER_API}/stories`)
         .then(res => res.json())
         .then(data => {
           dispatch(fetchStoresSuccess(data));
           resolve();
-        })
+        }) 
         .catch(error => {
           dispatch(fetchStoresError());
           reject(error.toString());
@@ -26,7 +24,7 @@ export const fetchStores = () => {
     type: types.FETCH_STORES
   }
 }
-export const fetchStoresSuccess = data => {
+export const fetchStoresSuccess = (data : any) => {
   return {
     type: types.FETCH_STORES_SUCCESS,
     data
@@ -38,7 +36,7 @@ export const fetchStoresError = () => {
   }
 }
 
-export const updateProductData = (storeId, product) => {
+export const updateProductData = (storeId: any, product: any) => {
   return {
     type: types.UPDATE_PRODUCT_DATA,
     storeId,
@@ -46,7 +44,7 @@ export const updateProductData = (storeId, product) => {
   }
 }
 
-export const addProduct = (storeId, product) => {
+export const addProduct = (storeId : any, product: any) => {
   return {
     type: types.ADD_PRODUCT,
     storeId,
@@ -54,15 +52,15 @@ export const addProduct = (storeId, product) => {
   }
 }
 
-export const filterProduct = name => {
+export const filterProduct = (name: string) => {
   return {
     type: types.FILTER_PRODUCT,
-    name
+    name 
   }
 }
 
-export const searchProduct = name => {
-  return dispatch => {
+export const searchProduct = (name: any) => {
+  return (dispatch: any) => {
     dispatch(filterProduct(name));
     //return new Promise((resolve, reject) => {
     return fetch(`${config.SERVER_API}/stories/?q=${name}`)
@@ -71,7 +69,7 @@ export const searchProduct = name => {
         dispatch(fetchStoresSuccess(data));
         //resolve();
       })
-      .catch(error => {
+      .catch(() => {
         dispatch(fetchStoresError());
         //  reject(error.toString());
       })
@@ -80,16 +78,16 @@ export const searchProduct = name => {
 }
 
 export const loadComments = () => {
-  return dispatch => {
-    dispatch(fetchComments());
-    return new Promise((resolve, reject) => {
-      return fetch(`${config.SERVER_API}/comments/`)
-        .then(res => res.json())
-        .then(data => {
+  // return dispatch => {
+  //   dispatch(fetchComments());
+  //   return new Promise((resolve, reject) => {
+  //     return fetch(`${config.SERVER_API}/comments/`)
+  //       .then(res => res.json())
+  //       .then(data => {
 
-        })
-    });
-  }
+  //       })
+  //   });
+  // }
 };
 
 export const fetchComments = () => {

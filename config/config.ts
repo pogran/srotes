@@ -1,4 +1,8 @@
-let config;
+interface Config {
+    SERVER_API: string;
+}
+
+let config: Config;
 
 if(process.env.prod) {
     config = {
@@ -9,7 +13,5 @@ if(process.env.prod) {
         SERVER_API : 'http://localhost:3001'
     }
 }
-
-
 
 export default config;

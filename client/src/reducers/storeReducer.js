@@ -1,4 +1,4 @@
-import {initStores} from './initialState';
+import {initStores} from './initialState.ts';
 import {
     ADD_PRODUCT, FETCH_STORES, FETCH_STORES_ERROR, FETCH_STORES_SUCCESS, FILTER_PRODUCT,
     UPDATE_PRODUCT_DATA
