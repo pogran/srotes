@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 //import logo from './header_logo.png';
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import StoryList from "../Story/StoryList";
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ class App extends Component {
     user: PropTypes.string.isRequired
   }
 
-  getChildContext() {
+  getChildContext() { 
     return {
       user: 'Test'
     }
