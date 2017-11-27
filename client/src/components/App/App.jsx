@@ -21,7 +21,7 @@ class App extends Component {
     this.state = {
       error: ''
     }
-  }
+  }     
 
   static childContextTypes = {
     user: PropTypes.string.isRequired
@@ -66,7 +66,7 @@ class App extends Component {
               <Filter/>
               <div className="card stores">
                 <div className="card-header">
-                  Stores
+                  Stores examples  
                 </div>
                 {(loading && loader) || ''}
                 {this.state.error && <div className="m-4 alert alert-danger" role="alert">

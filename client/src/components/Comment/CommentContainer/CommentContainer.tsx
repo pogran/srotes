@@ -8,7 +8,7 @@ class CommentContainer extends React.Component {
 
     render() {
         return (
-            <div>test</div>
+            <div>Text block</div>
         );
     }
 }
