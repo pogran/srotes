@@ -46,6 +46,7 @@
     "file-loader": "1.1.5",
     "image-webpack-loader": "3.4.2",
     "jest": "21.2.1",
+    "jshint": "^2.9.5",
     "less": "2.7.3",
     "less-loader": "4.0.5",
     "mocha": "4.0.1",
