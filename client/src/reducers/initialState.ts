@@ -1,16 +1,23 @@
-export interface initStores {
-    stores: any,
+export interface IntInitStores {
+    stores: object[],
     loading: boolean,
     filterName: string
 }
 
-export const initStores: initStores = {
+export const initStores: IntInitStores = {
     stores: [],
     loading: false,
     filterName: ''
-};
+}
 
-export const initComments: {data: any[], loading: boolean} = {
+/**
+ * Comments
+ */
+export interface IntInitComments {
+    data: object[],
+    loading: boolean
+}
+export const initComments: IntInitComments = {
     data: [],
-    loading: true,
-};
+    loading: true 
+}

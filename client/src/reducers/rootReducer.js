@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux'
+import {
+	combineReducers
+} from 'redux'
 import store from './storeReducer'
-import comment from './commentReducer'
+import comment from './commentReducer.ts'
 
 const rootReducer = combineReducers({
-  store,
-  comment
+	store,
+	comment
 })
 
 export default rootReducer

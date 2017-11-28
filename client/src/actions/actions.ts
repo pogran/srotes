@@ -90,8 +90,14 @@ export const loadComments = () => {
   // }
 };
 
-export const fetchComments = () => {
+export const fetchComments = () :IntFetchComments => {
   return {
     type: types.FETCH_COMMENTS
   }
 }
+
+export interface IntFetchComments {
+  type: string
+}
+
+export type TypesActionComment = IntFetchComments
