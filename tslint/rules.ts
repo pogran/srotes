@@ -264,7 +264,7 @@ export const jsRules = {
   },
   "radix": true,
   "semicolon": {
-      options: ["always"],
+      options: ["never"],
   },
   "space-before-function-paren": {
       options: {
