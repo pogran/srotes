@@ -1,6 +1,6 @@
-import * as types from './actionTypes';
-import config from "../../../config/config";
-import { Dispatch } from 'redux';
+import * as types from "./actionTypes"
+import config from "../../../config/config"
+import { Dispatch } from 'redux'
 
 export const loadStores = () => {
   return (dispatch : Dispatch<any>) => {

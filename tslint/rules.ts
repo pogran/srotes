@@ -264,7 +264,7 @@ export const jsRules = {
   },
   "radix": true,
   "semicolon": {
-      options: ["never"],
+      options: ["always"],
   },
   "space-before-function-paren": {
       options: {
@@ -302,4 +302,4 @@ export const jsRules = {
           "check-typecast",
       ],
   },
-};
+}
